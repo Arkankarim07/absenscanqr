@@ -22,9 +22,8 @@
               <form action="/login" method="POST">
                 @csrf
               <div class="mb-2">
-                <label for="exampleInputEmail1" class="form-label">Nama</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan Nama" name="name">
-
+                <label for="name" class="form-label">Nama</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="emailHelp" placeholder="Masukkan Nama" name="name" required value="{{ old('name') }}">
                 @error('name')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -33,9 +32,8 @@
               </div>
 
               <div class="mb-2">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword1" placeholder="Masukkan Password" name="password">
-
+                <label for="exampleInputpasswordPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Masukkan Password" name="password" required value="{{ old('name') }}">
                 @error('password')
                 <div class="invalid-feedback">
                   {{ $message }}

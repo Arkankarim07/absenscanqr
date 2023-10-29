@@ -13,9 +13,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : 'text-dark' }} d-flex align-items-center gap-2" href="/dashboard/posts">
-            <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-            My Posts
+          <a class="nav-link {{ Request::is('absen') ? 'active' : 'text-dark' }} d-flex align-items-center gap-2 active" aria-current="page" href="/absen">
+            <span class="bi" data-feather="table"></span>
+            Absen
           </a>
         </li>
       </ul>

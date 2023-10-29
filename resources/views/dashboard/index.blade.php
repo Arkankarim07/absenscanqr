@@ -5,9 +5,8 @@
   
 @auth 
 <h1><span class="rounded-border">Selamat datang {{ auth()->user()->name }}</span></h1>
-
+<p>jurusan : {{ auth()->user()->jurusan->jurusan }}</p>
 <div class="mt-3 shadow rounded mx-auto w-25 p-3">
-
   {{ $qr }}
 </div>
 <p class=" text-small mt-3">Scan QR Untuk Absen</p>

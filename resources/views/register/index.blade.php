@@ -17,23 +17,19 @@
                 <input type="text" class="form-control" id="nis" name="nis" aria-describedby="emailHelp" placeholder="Masukkan Nis">
               </div>
               <div class="mb-2">
-                <label for="kelas" class="form-label">Kelas</label>
-                <select class="form-select" id="kelas" name="kelas" aria-label="Default select example">
-                  <option selected>Kelas</option>
-                  <option value="X">X</option>
-                  <option value="XI">XI</option>
-                  <option value="XII">XII</option>
+                <label for="kelas" class="form-label">Jurusan</label>
+                <select class="form-select" id="kelas" name="jurusan_id" aria-label="Default select example">
+                 @foreach ($jurusan as $jurusan)
+                     <option value="{{ $jurusan->id }}">{{ $jurusan->jurusan }}</option>
+                 @endforeach
                 </select>
               </div>
               <div class="mb-2">
-                <label for="jurusan" class="form-label">Jurusan</label>
-                <select class="form-select" id="jurusan" name="jurusan" aria-label="Default select example">
-                  <option selected>Jurusan</option>
-                  <option value="rekayasa perangkat lunak">Rekayasa Perangkat Lunak</option>
-                  <option value="desain komunikasi visual">Desain Komunikasi Visual</option>
-                  <option value="bisnis retail">Bisnis Retail</option>
-                  <option value="manajemen perkantoran">Manajemen Perkantoran</option>
-                  <option value="akuntansi">Akuntansi</option>
+                <label for="jurusan" class="form-label">Kelas</label>
+                <select class="form-select" id="jurusan" name="kelas_id" aria-label="Default select example">
+                  @foreach ($kelas as $kelas)
+                  <option value="{{ $kelas->id }}">{{ $kelas->kelas }}</option>
+                  @endforeach
                 </select>
               </div>
               <div class="mb-2">
