@@ -3,7 +3,6 @@
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
-use SimpleSoftwareIO\QrCode\Generator;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -17,17 +16,9 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [AbsenController::class, 'index']);
+Route::post('/', [AbsenController::class, 'store'])->name('store');
 
-    $qrcode = new Generator;
-    $qr = $qrcode->size(100)->generate('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
-    
-    return view('dashboard.index', [
-        'qr' => $qr
-    ]);
-});
-
-Route::resource('/absen', AbsenController::class);
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate']);

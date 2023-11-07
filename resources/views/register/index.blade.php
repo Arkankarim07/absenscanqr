@@ -20,7 +20,7 @@
                 <label for="kelas" class="form-label">Jurusan</label>
                 <select class="form-select" id="kelas" name="jurusan_id" aria-label="Default select example">
                  @foreach ($jurusan as $jurusan)
-                     <option value="{{ $jurusan->id }}">{{ $jurusan->jurusan }}</option>
+                     <option value="{{ $jurusan->id }}">{{ $jurusan->nama_jurusan }}</option>
                  @endforeach
                 </select>
               </div>
@@ -28,7 +28,7 @@
                 <label for="jurusan" class="form-label">Kelas</label>
                 <select class="form-select" id="jurusan" name="kelas_id" aria-label="Default select example">
                   @foreach ($kelas as $kelas)
-                  <option value="{{ $kelas->id }}">{{ $kelas->kelas }}</option>
+                  <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
                   @endforeach
                 </select>
               </div>

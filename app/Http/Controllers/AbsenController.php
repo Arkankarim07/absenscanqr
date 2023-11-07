@@ -12,7 +12,9 @@ class AbsenController extends Controller
      */
     public function index()
     {
-        return view('dashboard.absen');
+        return view('dashboard.index', [
+            'absens' => Absen::with(['siswa', 'mapels', 'gurus', 'jurusan', 'kelas'])->get()
+        ]);
     }
 
     /**
@@ -28,7 +30,36 @@ class AbsenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // cek data apakah siswa sudah absen hari ini
+        $cek = Absen::where([
+            'nis_id' => $request->nis_id,
+            'mapel_id' => $request->mapel_id,
+            'guru_id' => $request->guru_id,
+            'jurusan_id' => $request->jurusan_id,
+            'kelas_id' => $request->kelas_id,
+            'tanggal' => date('y-m-d')
+        ])->first();
+
+
+        // if (!$cek) {
+        //     return redirect('/')->with('gagal', 'anda sudah absen');
+        // }
+
+        if ($cek) {
+            return redirect('/')->with('gagal', 'anda sudah absen');
+        }
+
+
+        Absen::create([
+            'nis_id' => $request->nis_id,
+            'mapel_id' => $request->mapel_id,
+            'guru_id' => $request->guru_id,
+            'jurusan_id' => $request->jurusan_id,
+            'kelas_id' => $request->kelas_id,
+            'tanggal' => date('y-m-d')
+        ]);
+
+        return redirect('/')->with('success', 'berhasil masuk');
     }
 
     /**
@@ -60,6 +91,7 @@ class AbsenController extends Controller
      */
     public function destroy(Absen $absen)
     {
-        //
+        // Absen::destroy($absen->id)
+        // return redirect()
     }
 }
