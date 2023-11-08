@@ -46,7 +46,7 @@ class AbsenController extends Controller
         // }
 
         if ($cek) {
-            return redirect('/')->with('gagal', 'anda sudah absen');
+            return redirect('/absen')->with('gagal', 'anda sudah absen');
         }
 
 
@@ -59,7 +59,7 @@ class AbsenController extends Controller
             'tanggal' => date('y-m-d')
         ]);
 
-        return redirect('/')->with('success', 'berhasil masuk');
+        return redirect('/absen')->with('success', 'berhasil masuk');
     }
 
     /**
@@ -91,7 +91,7 @@ class AbsenController extends Controller
      */
     public function destroy(Absen $absen)
     {
-        // Absen::destroy($absen->id)
-        // return redirect()
+        Absen::destroy($absen->id);
+        return redirect('/absen')->with('delete', 'Berhasil Delete');
     }
 }

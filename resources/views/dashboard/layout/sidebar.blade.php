@@ -9,7 +9,7 @@
           
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('/') ? 'active' : 'text-dark' }} d-flex align-items-center gap-2 active" aria-current="page" href="/">
+          <a class="nav-link {{ Request::is('absen') ? 'active' : 'text-dark' }} d-flex align-items-center gap-2 active" aria-current="page" href="/absen">
             <span class="bi" data-feather="file-text"></span>
             Dashboard
           </a>

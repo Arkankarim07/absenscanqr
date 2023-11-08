@@ -17,7 +17,9 @@ use App\Http\Controllers\RegisterController;
 */
 
 Route::get('/', [AbsenController::class, 'index']);
-Route::post('/', [AbsenController::class, 'store'])->name('store');
+Route::get('/absen', [AbsenController::class, 'index']);
+Route::post('/absen', [AbsenController::class, 'store'])->name('store');
+Route::delete('/absen{absen}', [AbsenController::class, 'destroy']);
 
 
 Route::get('/login', [LoginController::class, 'index']);

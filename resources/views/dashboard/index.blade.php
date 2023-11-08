@@ -20,6 +20,12 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   @endif
+  @if (session()->has('delete'))
+  <div class="alert alert-success alert-dismissible fade show col-md-3 mx-auto" role="alert">
+    <strong>{{ session('delete') }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
 </div>
 <div class="mt-3 shadow rounded w-25 mx-auto p-3">
   <video id="preview" class="w-100">
@@ -66,6 +72,10 @@
   </video>
 </div>
 <p class="text-small text-center mt-3">Scan QR Untuk Absen</p>
+
+@if ($absens->isEmpty())
+    <h3 class=" text-center mt-5">Silahkan Absen Dengan menggunakan QR Code</h3>
+@else
 <table class="table table-striped">
   <tr>
     <th scope="col">No</th>
@@ -75,6 +85,7 @@
     <th scope="col">Jurusan</th>
     <th scope="col">Kelas</th>
     <th scope="col">Tanggal</th>
+    <th scope="col">Action</th>
   </tr>
   <tr>
   @foreach ($absens as $absen)
@@ -85,11 +96,20 @@
       <td>{{ $absen->jurusan->nama_jurusan }}</td>
       <td>{{ $absen->kelas->nama_kelas }}</td>
       <td>{{ $absen->tanggal }}</td>
+      <td>
+        <form action="/absen{{ $absen->id }}" method="POST">
+          @method('delete')
+          @csrf
+          <button class="badge bg-danger border-0 " onclick="return confirm('Yakin?')"><span class="bi" data-feather="x"></span></button>
+        </form>
+      </td>
     </tr>
 
     @endforeach
 </table>
+@endif
 
+ 
 </div>
 
 
