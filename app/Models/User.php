@@ -22,6 +22,10 @@ class User extends Authenticatable
     //     'email',
     //     'password',
     // ];
+    
+    const ROLE_SISWA = 'siswa';
+    const ROLE_GURU = 'guru';
+
     protected $table = 'users';
     protected $guarded = ['id'];
 

@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('absen', function (Blueprint $table) {
             $table->id();
             $table->foreignId('nis_id');
-            $table->foreignId('mapel_id');
-            $table->foreignId('guru_id');
-            $table->foreignId('jurusan_id');
             $table->foreignId('kelas_id');
+            $table->foreignId('jurusan_id');
             $table->date('tanggal');
             $table->timestamps();
         });

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Absen;
 use Illuminate\Http\Request;
-
+use SimpleSoftwareIO\QrCode\Generator;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class AbsenController extends Controller
 {
     /**
@@ -12,8 +13,20 @@ class AbsenController extends Controller
      */
     public function index()
     {
+
+        // memngambil data siswa
+        $siswa = optional(auth()->user());
+
+        $QrcodeSiswa = implode(',' ,[
+            $siswa->nis,
+            $siswa->kelas_id,
+            $siswa->jurusan_id,
+        ]);
+
+        $qrcode = QrCode::size(100)->generate($QrcodeSiswa);
         return view('dashboard.index', [
-            'absens' => Absen::with(['siswa', 'mapels', 'gurus', 'jurusan', 'kelas'])->get()
+            'absens' => Absen::with(['siswa', 'mapels', 'gurus', 'jurusan', 'kelas'])->get(),
+            'qrcode' => $qrcode,
         ]);
     }
 
@@ -33,10 +46,8 @@ class AbsenController extends Controller
         // cek data apakah siswa sudah absen hari ini
         $cek = Absen::where([
             'nis_id' => $request->nis_id,
-            'mapel_id' => $request->mapel_id,
-            'guru_id' => $request->guru_id,
-            'jurusan_id' => $request->jurusan_id,
             'kelas_id' => $request->kelas_id,
+            'jurusan_id' => $request->jurusan_id,
             'tanggal' => date('y-m-d')
         ])->first();
 
@@ -52,10 +63,8 @@ class AbsenController extends Controller
 
         Absen::create([
             'nis_id' => $request->nis_id,
-            'mapel_id' => $request->mapel_id,
-            'guru_id' => $request->guru_id,
-            'jurusan_id' => $request->jurusan_id,
             'kelas_id' => $request->kelas_id,
+            'jurusan_id' => $request->jurusan_id,
             'tanggal' => date('y-m-d')
         ]);
 
@@ -94,4 +103,11 @@ class AbsenController extends Controller
         Absen::destroy($absen->id);
         return redirect('/absen')->with('delete', 'Berhasil Delete');
     }
+
+    // public function search(Request $request)
+    // {
+    //     $optionKelas = Absen::pluck('kelas_id')->unique();
+
+    //     $filterKelas = $request->input('kelas_id');
+    // }
 }
