@@ -76,7 +76,7 @@
 
 {{-- LOGIN SISWA --}}
 @if (auth()->user()->role == 'siswa')
-    <div class="mt-3 shadow rounded w-25 mx-auto p-3 text-center ">
+    <div class="mt-3 shadow rounded w-25 mx-auto p-3 text-center mb-3  ">
       {{ $qrcode }}
     </div>
 @endif
@@ -85,13 +85,13 @@
 @if ($absens->isEmpty())
     <h3 class=" text-center mt-5">Silahkan Absen Dengan menggunakan QR Code</h3>
 @else
-<select name="kelas_id">
+{{-- <select name="kelas_id">
   <option value="">
     @foreach ($absens as $jurusan)
     <option value="{{ $jurusan->id }}">{{ $jurusan->jurusan->nama_jurusan }}</option>
     @endforeach
   </option>
-</select>
+</select> --}}
 <table class="table table-striped">
   <tr>
     <th scope="col">No</th>
