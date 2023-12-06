@@ -28,6 +28,14 @@
         }
       }
 
+      @media (min-width: 768px) {
+        .bg-body-tertiary {
+          height: 100vh;
+        }
+      }
+
+
+
       .b-example-divider {
         width: 100%;
         height: 3rem;

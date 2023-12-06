@@ -23,6 +23,7 @@ class RegisterController extends Controller
     {
         $validatedData =  $request->validate([
             'name' => ['required', 'max:255'],
+            'nis' => ['required'],
             'kelas_id' => ['required'],
             'jurusan_id' => ['required'],
             'password' => 'required|min:5|max:100'
